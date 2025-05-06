@@ -1,57 +1,44 @@
 from datetime import datetime
 
-def dates_difference(date1, date2, format="%Y-%m-%d"):
+def datediff(date1,date2,format="%Y-%m-%d"):
     """
-    Calculates the difference in days between two dates that are provided by the user.
+    this function help in finding the difference between two dates thaat are given by the user
 
-    Args:
-        date1 (str): The first date must be string.
-        date2 (str): The second date must be string.
-        format (str): The format in which the dates are provided and the  Default format  is "%Y-%m-%d".
+    Args: 
+     date1(str): The first date that is given by the user which must be a string 
+     date2(str): The second date that is given by the user which must be a string 
+     format(str): The  format which is dates are provided (default: "%Y-%m-%d" )
 
-    Returns:
-        int: The number od day or days would be integer .
-
-    Raises:
-        ValueError: If the date strings do not match any of the expected format in our program 
-
-    Examples:
-         format (YYYY-MM-DD):
-             dates_difference("2025-05-01", "2025-05-10")
-            
-
-         format (DD/MM/YYYY):
-             dates_difference("01/05/2025", "10/05/2025", "%d/%m/%Y")
-            
-
-        format (MM-DD-YYYY):
-            dates_difference("05-01-2025", "05-10-2025", "%m-%d-%Y")  
+    
     """
     try:
-        date1 = datetime.strptime(date1, format).date()
-        date2 = datetime.strptime(date2, format).date()
-        return abs((date2 - date1).days)
+        date1=datetime.strptime(date1,format)
+        date2=datetime.strptime(date2,format)
+
+        # we calculate the difference between our dates 
+        diff=abs((date2-date1).days)
+        return diff
     except ValueError:
-        raise ValueError("Invalid date format. Please enter dates that match the format you have selected .")
+        return "Invalid date format.please!!! use the correct format to write your dates"
 
-if __name__ == '__main__':
-    print("program to Calculate the difference in days between two dates.")
-    # here there is options of formats that the user can choose from 
-    format_options = {
-        "1": ("%Y-%m-%d", "2025-05-02"),    
-        "2": ("%d/%m/%Y", "02/05/2025"),    
-        "3": ("%m-%d-%Y", "05-02-2025")     
-    }
-    print("\nSelect a date format:")
-    for key, (fmt, example) in format_options.items():
-        print(f"{key}. {fmt}  (e.g., {example})")
-    selected_option = input("Enter your choice [1-3]: ").strip()
-    format = format_options.get(selected_option, format_options["1"])[0]  # the default format is option 1
-    # our user can input the data to use in our program 
-    date1 = input(f"Enter the first date (format {format}): ")
-    date2 = input(f"Enter the second date (format {format}): ")
-    try:
-        difference = dates_difference(date1, date2, format)
-        print(f"The difference between {date1} and {date2} is: {difference} days")
-    except ValueError as e:
-        print(f"Error: {e}")
+def main():
+    print("welcome to the calculator for date difference")
+    while True:
+        try:
+            #the user input the dates to calculate their difference in days 
+            date1=input("Enter the first date(use this format: YYYY-MM-DD): ").strip()
+            date2=input("Enter the second date(use this format: YYYY-MM-DD): ").strip()
+            # we give error message if dates are not all given 
+                   
+            if not date1 or not date2:
+                print("Error: you have to enter both dates to calculate their difference")
+            diff=datediff(date1,date2)
+            if isinstance(diff,int):
+                print(f"The difference between the two dates is :{diff} days.")
+            # else:
+            #     print(diff)
+            break
+        except Exception as e:
+            print(f"An eror occured: {e}")
+            break
+main()
