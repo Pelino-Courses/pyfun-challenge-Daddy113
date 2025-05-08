@@ -42,6 +42,22 @@ class Product:
         print(f"Price: ${self.price}")
         print(f"Quantity: {self.quantity}")
         print(f"Total value: ${self.total_value()}")
+    
+    def increase(self,amount):
+        """
+        this function help to increase price of product in inventory
+        """
+        if amount<0:
+            raise ValueError("Amount to remove can not be negative.")
+        self.price+=amount
+    
+    def decrease(self,amount):
+        """
+        this function help to Decrease price of product in inventory
+        """
+        if amount<0:
+            raise ValueError("Amount to remove can not be negative.")
+        self.price-=amount
 
 def list_products(products):
     """
@@ -84,7 +100,9 @@ def main():
         print("4.Increase product quantity in inventory")
         print("5.Decrease product quantity in inventory")
         print("6.Delete product from inventory")
-        print("7.Exit")
+        print("7.Increase the price of product")
+        print("8.Decrease the price of product")
+        print("9.Exit")
 
         choice=input("Enter your choice (1-6): ")
         try:
@@ -108,14 +126,14 @@ def main():
                 if product:
                     amount=int(input("Enter amount to add: "))
                     product.add_inventory(amount)
-                    print("Inventory added successfully!!")
+                    print("quantity added successfully!!")
             
             elif choice=="5":
                 product=select_product(products)
                 if product:
                     amount=int(input("Enter amount to remove: "))
                     product.remove_inventory(amount)
-                    print("Inventory removed successfully!!")
+                    print("quantity removed successfully!!")
             elif choice=="6":
                 product=select_product(products)
                 if product:
@@ -123,6 +141,20 @@ def main():
                     print("Product removed ")
 
             elif choice=="7":
+                product=select_product(products)
+                if product:
+                    amount=int(input("Enter amount to add: "))
+                    product.increase(amount)
+                    print("price changed successfully!!")
+                
+            elif choice=="8":
+                product=select_product(products)
+                if product:
+                    amount=int(input("Enter amount to remove: "))
+                    product.decrease(amount)
+                    print("price changed successfully!!")
+
+            elif choice=="9":
                 print("Exiting program.Goodbye!!")
                 exit()
 
