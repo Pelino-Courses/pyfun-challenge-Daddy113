@@ -81,8 +81,8 @@ def main():
         print("1.Add New product in Inventory")
         print("2.View all products in Inventory")
         print("3.Select product and view it's information")
-        print("4.Add Inventory to product")
-        print("5.Remove Inventory from product")
+        print("4.Increase product quantity in inventory")
+        print("5.Decrease product quantity in inventory")
         print("6.Delete product from inventory")
         print("7.Exit")
 
