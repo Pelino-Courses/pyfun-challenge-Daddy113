@@ -1,11 +1,11 @@
 import math
 class Shape:
     """
-    
+    this is shape class
     """
     def area(self):
         """"
-        
+        this function is overriden by subclasses which is used to calculate area of a shape
         
         """
         raise NotImplementedError("The subclasses must override area()")
@@ -30,6 +30,9 @@ class circle(Shape):
         return f"circle with radius {self.radius}"
     
 class rectangle(Shape):
+    """"
+    class of rectangle shape
+    """
     def __init__(self,width,height):
         if width<=0 or height<=0:
             raise ValueError("Width and height must be positive")
@@ -43,6 +46,9 @@ class rectangle(Shape):
         return f"Rectangle with width {self.width} and height {self.height}"
 
 class triangle(Shape):
+    """
+    class of triangle shape 
+    """
     def __init__(self,a,b,c):
         if a<=0 or b<=0 or c<=0:
             raise ValueError("sides must be positive")
@@ -63,12 +69,13 @@ class triangle(Shape):
         return f"Triangle with sides {self.a}, {self.b}, {self.c}"
     
 def main():
+    print("          welcome to Shape Area calculator\n")
     print("choose a shape to create: ")
     print("1.circle")
     print("2.Rectangle")
     print("3.Triangle") 
 
-    choice=input("Enter the number of the shape: ").strip() 
+    choice=input("Enter the number of the shape from 1 to 3: ").strip() 
 
     try:
         if choice=="1":
