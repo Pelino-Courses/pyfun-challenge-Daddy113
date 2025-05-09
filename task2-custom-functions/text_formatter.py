@@ -1,4 +1,4 @@
-def formatted_text(text,prefix,suffix,capitalize,max_length=None):
+def formatted_text(text,prefix="",suffix="",capitalize=False,max_length=None):
     """
     this function take the text and adds to it prefix,suffix and capitalize the text if needed by the user and give the certain length preffered by the user
 
@@ -26,17 +26,18 @@ def get_user_input():
     user_text=input("\nEnter the text to be formatted: ")
     if not user_text.isalpha():
         raise ValueError("Text must only have letters as it''s characters.")
-    prefix=""
     if input("Do you want to add a prefix to your text?(Answer:yes/no): ").lower().strip()=="yes":
         prefix=input("Enter the prefix: ")
     else:
-        raise ValueError(" use the answer that are shown  please!!!")
+    #     raise ValueError(" use the answer that are shown  please!!!")
+        prefix=""
 
-    suffix=""
+    
     if input("Do you want to add suffix on your text?(Answer:yes/no): ").lower().strip()=="yes":
         suffix=input("Enter the suffix: ")
     else:
-        raise ValueError(" use the answer that are shown  please!!!")
+    #     raise ValueError(" use the answer that are shown  please!!!")
+        suffix=""
 
     capitalize=input("Do you want to capitalize the first letter?(Answer:yes if not leave it blank): ").lower()
     max_length=input("Enter the maximum length(Leave it blank if no limit needed): ")
