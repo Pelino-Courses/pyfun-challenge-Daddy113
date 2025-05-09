@@ -1,11 +1,19 @@
-# teaching_assistant.py
-from student import Student
-from instructor import Instructor
+class TeachingAssistant:
+    def __init__(self,first_name,last_name):
+        self.first_name=first_name
+        self.last_name=last_name
+        self.courses=[]
 
-class TeachingAssistant(Student, Instructor):
-    def __init__(self, first_name: str, last_name: str):
-        Student.__init__(self, first_name, last_name)
-        Instructor.__init__(self, first_name, last_name)
+    def __repr__(self):
+        return f"{self.first_name} {self.last_name}"
 
-    def get_role(self) -> str:
-        return "Teaching Assistant"
+    def assign_course(self,course):
+        if course not in self.courses:
+            self.courses.append(course)
+            course.add_assistant(self)
+
+    def remove_course(self,course):
+        if course in self.courses:
+            self.courses.remove(course)
+            course.remove_assistant(self)
+

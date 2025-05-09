@@ -1,25 +1,43 @@
-# course.py
-from typing import List
-
 class Course:
-    def __init__(self, name: str, code: str):
-        self.name = name
-        self.code = code
-        self._enrollments: List['Enrollment'] = []  # Forward reference to Enrollment
+    def __init__(self,name,code):
+        self.name=name
+        self.code=code
+        self.students=[]
+        self.instructors=[]
+        self.assistants=[]
 
-    def enroll(self, student: 'Student'):  # Forward reference to Student
-        # Delayed import to avoid circular import error
-        from student import Student
-        from enrollment import Enrollment  # Importing Enrollment here to avoid circular import
-        
-        if not isinstance(student, Student):
-            raise TypeError("Only Student instances can be enrolled")
-        enrollment = Enrollment(student, self)
-        self._enrollments.append(enrollment)
-        student.add_enrollment(enrollment)
+    def __repr__(self):
+        return f"{self.name} ({self.code})"
+    
+    def add_instructor(self,instructor):
+        if instructor not in self.instructors:
+            self.instructors.append(instructor)
+
+    def remove_instructor(self,instructor):
+        if instructor in self.instructors:
+            self.instructors.remove(instructor)
+    
+    def add_assistant(self,assistant):
+        if assistant not in self.assistants:
+            self.assistants.append(assistant)
+
+    def remove_assistant(self,assistant):
+        if assistant in self.assistants:
+            self.assistants.remove(assistant)
+
+    def enroll(self,student):
+        if student not in self.students:
+            self.students.append(student)
+    
+    def unenroll(self,student):
+        if student in self.students:
+            self.students.remove(student)
 
     def get_students(self):
-        return (en.student for en in self._enrollments)
+        return self.students
+    
+    def get_instructors(self):
+        return self.instructors
 
-    def __str__(self):
-        return f"{self.code}: {self.name}"
+    def get_assistants(self):
+        return self.assistants
